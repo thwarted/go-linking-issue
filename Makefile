@@ -1,7 +1,7 @@
 # vim noexpandtab
 
 help:
-	@echo -e "make clean\nmake success - see it succeed\nmake fail1\nmake fail2"
+	@echo -e "make clean\nmake success\nmake successalt\nmake fail1\nmake fail2"
 
 clean:
 	rm -rvf lib src/lib build
@@ -15,6 +15,12 @@ success: clean build
 	mkdir -p lib
 	cp build/libmytest.a lib
 	ln -s ../lib src/lib
+	go run main.go
+
+successalt: clean build
+	mkdir -p src/lib
+	cp build/libmytest.a src/lib
+	ln -s src/lib lib
 	go run main.go
 
 fail1: clean build
